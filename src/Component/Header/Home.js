@@ -1,6 +1,17 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import Loading from './Loading';
 
 const Home = () => {
+    // const url="";
+
+    // const { data: allOrders, isLoading, refetch } = useQuery('allOrders', () => fetch(url)
+    // .then(res => res.json()));
+
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // }
+
     return (
         <div>
             <h2>Todo List</h2>

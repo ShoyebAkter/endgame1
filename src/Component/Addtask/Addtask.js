@@ -3,8 +3,24 @@ import { useForm } from 'react-hook-form';
 
 const Addtask = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const onSubmit = () => {
-
+    const onSubmit = async data => {
+        const task={
+            name: data.name,
+            task: data.task
+        }
+        const url="";
+        fetch(url,{
+            method:"POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(task)
+        })
+        .then(res=>res.json())
+        .then(result=>{
+            alert("task added successfully")
+        reset();
+        })
     }
     return (
         <div>
@@ -39,10 +55,12 @@ const Addtask = () => {
                             }
                         })}
                     ></textarea>
+                    <br></br>
+                    <input className='btn w-full max-w-xs text-white' type="submit" value="Add" />
                 </div>
 
 
-                <input className='btn w-full max-w-xs text-white' type="submit" value="Add" />
+                
             </form>
 
         </div >
