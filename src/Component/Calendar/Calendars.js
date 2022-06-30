@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 const Calendars = () => {
     const [value, onChange] = useState(new Date());
     return (
-        <div>
+        <div className='grid justify-center p-10'>
             <Calendar onChange={onChange} value={value} />
         </div>
     );

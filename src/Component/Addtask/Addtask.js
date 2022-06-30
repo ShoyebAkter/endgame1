@@ -8,7 +8,9 @@ const Addtask = () => {
     const onSubmit = data => {
         const task={
             name: data.name,
-            task: data.Task
+            task: data.Task,
+            starting:data.starting,
+            ending: data.ending
         }
         const url="http://localhost:5000/task";
         fetch(url,{
@@ -54,6 +56,34 @@ const Addtask = () => {
                             required: {
                                 value: true,
                                 message: 'Task is Required'
+                            }
+                        })}
+                    ></textarea>
+                    
+                </div>
+                <div className="mx-auto form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Starting date</span>
+                    </label>
+                    <textarea className="textarea textarea-bordered" placeholder="Starting date"
+                        {...register("starting", {
+                            required: {
+                                value: true,
+                                message: 'starting is Required'
+                            }
+                        })}
+                    ></textarea>
+                    
+                </div>
+                <div className="mx-auto form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Ending date</span>
+                    </label>
+                    <textarea className="textarea textarea-bordered" placeholder="Ending date"
+                        {...register("ending", {
+                            required: {
+                                value: true,
+                                message: 'ending is Required'
                             }
                         })}
                     ></textarea>

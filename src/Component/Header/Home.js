@@ -5,8 +5,8 @@ import Loading from './Loading';
 
 const Home = () => {
     const [allTasks,setAllTasks]=useState([])
+    const [completeTask,setCompleteTask]=useState([])
     const [isLoading,setIsLoading]=useState(false);
-    const [checked,setChecked]=useState(false)
 
     const navigate=useNavigate()
 
@@ -16,6 +16,13 @@ const Home = () => {
         .then(data=>setAllTasks(data))
     },[])
 
+    useEffect(()=>{
+        fetch("http://localhost:5000/complete")
+        .then(res=>res.json())
+        .then(data=>setCompleteTask(data));
+    },[])
+
+    const tasks=[...completeTask,...allTasks];
     
 
     if (isLoading) {
@@ -26,38 +33,7 @@ const Home = () => {
         navigate(`task/${id}`)
     }
 
-    const complete=(event,task,id)=>{
-        // console.log(task)
-        const newTask={
-            name: task.name,
-            task: task.task
-        }
-        // console.log(newTask)
-        if(event.target.checked){
-            fetch(`http://localhost:5000/complete`,{
-                method: "POST",
-                headers:{
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(newTask)
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                alert("Completed")
-            })
-
-            fetch(`http://localhost:5000/task/${id}`,{
-                method:"DELETE"
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                const remaining=allTasks.filter(task=>task._id!==id)
-                setAllTasks(remaining);
-            })
-            
-        }
-        
-    }
+    
 
     return (
         <div>
@@ -68,23 +44,23 @@ const Home = () => {
                         <tr>
                             <th></th>
                             <th>Name</th>
+                            <th>Starting</th>
+                            <th>Ending</th>
                             <th>Task</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                        {
-                        allTasks.map(task=>{
+                        tasks.map((task,index)=>{
                             return(
                                 <tr>
                                 <th>
-                                    <div class="form-control">
-                                        <label class="cursor-pointer label">
-                                            <input type="checkbox" onChange={(e)=>complete(e,task,task._id)} class="checkbox checkbox-accent" />
-                                        </label>
-                                    </div>
+                                    {index+1}
                                 </th>
                                 <td>{task.name}</td>
+                                <td>{task.starting}</td>
+                                <td>{task.ending}</td>
                                 <td>{task.task}</td>
                                 <td><button class="btn btn-xs sm:btn-sm" onClick={()=>update(task._id)}>Edit</button></td>
                             </tr>

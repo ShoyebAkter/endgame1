@@ -37,7 +37,7 @@ const Update = () => {
     }
     return (
         <div  style={{minHeight:'100vh'}}>
-        <p className='text-2xl'><strong>Task Name: {name}</strong></p>
+        <p className='text-2xl text-center'><strong>Update The Task</strong></p>
                 <br/>
         <form onSubmit={handleUpdate} style={{display:'flex',flexDirection:'row',justifyContent:'center'}}> 
 
