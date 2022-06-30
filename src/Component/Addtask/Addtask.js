@@ -1,14 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+
+
 const Addtask = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const onSubmit = async data => {
+    const onSubmit = data => {
         const task={
             name: data.name,
-            task: data.task
+            task: data.Task
         }
-        const url="";
+        const url="http://localhost:5000/task";
         fetch(url,{
             method:"POST",
             headers: {
@@ -57,6 +59,7 @@ const Addtask = () => {
                     ></textarea>
                     <br></br>
                     <input className='btn w-full max-w-xs text-white' type="submit" value="Add" />
+                    <br/>
                 </div>
 
 
