@@ -26,7 +26,7 @@ const Home = () => {
         navigate(`task/${id}`)
     }
 
-    const complete=(event,task)=>{
+    const complete=(event,task,id)=>{
         // console.log(task)
         const newTask={
             name: task.name,
@@ -45,14 +45,23 @@ const Home = () => {
             .then(data=>{
                 alert("Completed")
             })
-            event.target.disabled=true;
+
+            fetch(`http://localhost:5000/task/${id}`,{
+                method:"DELETE"
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                const remaining=allTasks.filter(task=>task._id!==id)
+                setAllTasks(remaining);
+            })
+            
         }
         
     }
 
     return (
         <div>
-            <h2>Todo List</h2>
+            <h2 className='text-3xl text-center'>Todo List</h2>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
@@ -71,7 +80,7 @@ const Home = () => {
                                 <th>
                                     <div class="form-control">
                                         <label class="cursor-pointer label">
-                                            <input type="checkbox" onChange={(e)=>complete(e,task)} class="checkbox checkbox-accent" />
+                                            <input type="checkbox" onChange={(e)=>complete(e,task,task._id)} class="checkbox checkbox-accent" />
                                         </label>
                                     </div>
                                 </th>

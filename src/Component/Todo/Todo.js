@@ -3,7 +3,7 @@ import React from 'react';
 const Todo = () => {
     return (
         <div>
-            <h2>Completed task</h2>
+            <h2>What is this for</h2>
         </div>
     );
 };

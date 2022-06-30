@@ -18,6 +18,7 @@ const Complete = () => {
 
     return (
         <div>
+            <h2 className='text-3xl text-center'>Completed task</h2>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
