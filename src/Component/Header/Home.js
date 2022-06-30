@@ -6,6 +6,7 @@ import Loading from './Loading';
 const Home = () => {
     const [allTasks,setAllTasks]=useState([])
     const [isLoading,setIsLoading]=useState(false);
+    const [checked,setChecked]=useState(false)
 
     const navigate=useNavigate()
 
@@ -26,23 +27,27 @@ const Home = () => {
     }
 
     const complete=(event,task)=>{
-        console.log(task)
-        // if(event.target.checked){
-        //     fetch(`http://localhost:5000/complete`,{
-        //         method: "POST",
-        //         headers:{
-        //             'content-type': 'application.json'
-        //         },
-        //         body: JSON.stringify(task)
-        //     })
-        //     .then(res=>res.json())
-        //     .then(data=>{
-        //         alert("Completed")
-        //     })
-        // }
-        // else{
-        //     console.log("unchecked")
-        // }
+        // console.log(task)
+        const newTask={
+            name: task.name,
+            task: task.task
+        }
+        // console.log(newTask)
+        if(event.target.checked){
+            fetch(`http://localhost:5000/complete`,{
+                method: "POST",
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(newTask)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                alert("Completed")
+            })
+            event.target.disabled=true;
+        }
+        
     }
 
     return (

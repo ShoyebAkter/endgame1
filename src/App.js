@@ -8,6 +8,7 @@ import Calendars from './Component/Calendar/Calendars';
 import Addtask from './Component/Addtask/Addtask';
 import Footer from './Component/Footer/Footer';
 import Update from './Component/Header/Update';
+import Complete from './Component/Complete/Complete';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
+        <Route path="/complete" element={<Complete/>}></Route>
         <Route path="/todo" element={<Todo/>}></Route>
         <Route path="task/:id" element={<Update/>}></Route>
         <Route path="/calendar" element={<Calendars/>}></Route>

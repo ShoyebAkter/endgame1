@@ -26,6 +26,7 @@ const Navbar = () => {
                         <>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/addtask">Addtask</Link></li>
+                            <li><Link to="/complete">Completed Task</Link></li>
                             <li><Link to="/todo">Todo</Link></li>
                             <li><Link to="/calendar">Calendar</Link></li>
                         </>
